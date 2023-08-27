@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -28,6 +29,7 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -56,8 +58,17 @@ fun ArtSpaceLayout( modifier: Modifier = Modifier) {
 
     val pictures = mutableListOf<Pictures>(
         Pictures(R.drawable._jjk2,"乙骨", "seisyunbot"),
-        Pictures(R.drawable.jjk_geto,"乙骨", "seisyunbot"),
-        Pictures(R.drawable._jjk,"乙骨", "seisyunbot"),
+        Pictures(R.drawable.jjk_geto,"Geto", "nn"),
+        Pictures(R.drawable._jjk,"Jjk", "Koko"),
+        Pictures(R.drawable._cat,"Cat", "Luisa Maria"),
+        Pictures(R.drawable.bocchi_the_rock,"Bocchi the Rock", "Akimizu Sakai"),
+        Pictures(R.drawable.mushoku_tensei,"乙骨", "seisyunbot"),
+        Pictures(R.drawable.nature,"乙骨", "seisyunbot"),
+        Pictures(R.drawable.onepunchman,"OnePunchMan", "nn"),
+        Pictures(R.drawable._orsted,"Orsted - Muchoku Tensei", "from zerochan"),
+        Pictures(R.drawable.cat2,"cat.", "nn"),
+        Pictures(R.drawable.jjk_nanami,"Nanami Jjk", "nn"),
+        Pictures(R.drawable.onepiece_robin,"Robin - One Piece", "nn"),
     )
     val currentPicture =  pictures[currentPictureIndex]
 
@@ -65,6 +76,7 @@ fun ArtSpaceLayout( modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
+
             .fillMaxSize()
             .paint(
                 painter = painterResource(currentPicture.painter),
@@ -89,34 +101,43 @@ fun ArtSpaceLayout( modifier: Modifier = Modifier) {
             )
             Text(
                 text = currentPicture.artist,
+                fontWeight = FontWeight.Bold,
                 modifier = modifier,
             )
         }
+
         Row(
             verticalAlignment = Alignment.CenterVertically ,
             horizontalArrangement = Arrangement.SpaceAround,
             modifier = modifier
-                .fillMaxWidth()
+                .fillMaxWidth(.75f)
                 .padding(top = 16.dp, bottom = 16.dp),
         ) {
+
             Button(onClick = {
-                if (currentPictureIndex-- <= 0) {
+                if (--currentPictureIndex < 0) {
                     currentPictureIndex = pictures.lastIndex
-                }
-            }) {
+                } },
+                modifier = Modifier.weight(.4f),
+            ) {
                 Text(
                     text = stringResource(R.string.previous),
+                    fontSize = 15.sp,
                     modifier = modifier
                 )
             }
 
+            Spacer(modifier = modifier.weight(.2f))
+            
             Button(onClick = {
-                if(currentPictureIndex++ >= pictures.lastIndex){
+                if(++currentPictureIndex > pictures.lastIndex){
                     currentPictureIndex = 0
-                }
-            }) {
+                } },
+                modifier = Modifier.weight(.4f)
+            ) {
                 Text(
                     text = stringResource(R.string.next),
+                    fontSize = 15.sp,
                     modifier = modifier
                 )
             }
