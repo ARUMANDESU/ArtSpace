@@ -76,7 +76,6 @@ fun ArtSpaceLayout( modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
-
             .fillMaxSize()
             .paint(
                 painter = painterResource(currentPicture.painter),
@@ -97,12 +96,10 @@ fun ArtSpaceLayout( modifier: Modifier = Modifier) {
             Text(
                 text = currentPicture.title,
                 fontSize = 24.sp,
-                modifier = modifier
             )
             Text(
                 text = currentPicture.artist,
                 fontWeight = FontWeight.Bold,
-                modifier = modifier,
             )
         }
 
@@ -123,7 +120,6 @@ fun ArtSpaceLayout( modifier: Modifier = Modifier) {
                 Text(
                     text = stringResource(R.string.previous),
                     fontSize = 15.sp,
-                    modifier = modifier
                 )
             }
 
@@ -138,7 +134,6 @@ fun ArtSpaceLayout( modifier: Modifier = Modifier) {
                 Text(
                     text = stringResource(R.string.next),
                     fontSize = 15.sp,
-                    modifier = modifier
                 )
             }
         }
@@ -146,6 +141,7 @@ fun ArtSpaceLayout( modifier: Modifier = Modifier) {
    }
 }
 
+//To structure data in clean way
 data class Pictures(
     @DrawableRes val painter: Int,
     val title: String,
@@ -154,7 +150,7 @@ data class Pictures(
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun GalleryPreview() {
     ArtSpaceTheme {
         ArtSpaceLayout()
     }
